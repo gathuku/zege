@@ -1,32 +1,18 @@
 class UserController < ApplicationController
 
   def register
-    # hash with form params
-    form_params={
+    @user=User.new({
       name: params[:name],
       email: params[:email],
       password: params[:password],
-    }
-    user_obj=User.new
-    user=user_obj.create_new_user(form_params)
-
+    })
+    @user.save
+    @user.authentication_token=SecureRandom.alphanumeric
+    if @user
+      render json:{status:'success',code:200,email:@user.email,token:@user.authentication_token}
+    else
+      head(:unprocessable_entity)
+    end
   end
 
-  def login
-
-  end
-
-  def logout
-  end
-
-  private
-  def token_guard
-    if request.headers['Authorization'].present?
-     token=request.headers['Authorization'].split(' ').last
-     token_user=User.where(authentication_token: token).first
-     #return the bearer Token User
-   else
-     head(:unauthorized)
-   end
-  end
 end
