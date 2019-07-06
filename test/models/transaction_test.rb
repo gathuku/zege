@@ -6,7 +6,7 @@ class TransactionTest < ActiveSupport::TestCase
   # end
 
   def setup
-    #@transaction=Transaction.new(made_to: 'johndoe@gmail,com', trans_type: 'credit', amount: 100.0, user_id: 1) 
+    #@transaction=Transaction.new(made_to: 'johndoe@gmail,com', trans_type: 'credit', amount: 100.0, user_id: 1)
     @transaction=transactions(:one)#From Fixtures
   end
 
@@ -35,6 +35,16 @@ class TransactionTest < ActiveSupport::TestCase
   test 'invalid without user' do
     @transaction.user=nil
     refute @transaction.valid?,'user required'
+  end
 
+  #Test model methods
+  test 'handle_transfer' do
+    trans_transfer=Transaction.new
+    assert trans_transfer.handle_transfer , 'handle_transfer method required'
+  end
+
+  test 'handle_top_up' do
+    trans_topup=Transaction.new
+    assert trans_topup.handle_top_up , 'handle_top_up method required'
   end
 end
