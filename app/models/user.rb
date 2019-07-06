@@ -27,7 +27,8 @@ class User < ApplicationRecord
   end
 
  def create_new_user(form_params)
-
+   user=User.new(form_params)
+   user.save
  end
 
 end
