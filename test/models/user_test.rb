@@ -30,4 +30,17 @@ class UserTest < ActiveSupport::TestCase
     refute @user.valid?, 'saved user without password'
     assert_not_nil @user.errors[:password],'no validation for password'
   end
+
+  #test user_create_session method
+  test 'create_user_session' do
+    user=User.new
+    assert user.create_user_session,'create_user_session method required'
+  end
+
+  test 'destroy_user_session' do
+    user=User.new
+    assert user.destroy_user_session,'destroy_user_session method required'
+  end
+  
+
 end
