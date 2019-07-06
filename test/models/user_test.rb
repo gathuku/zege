@@ -34,13 +34,18 @@ class UserTest < ActiveSupport::TestCase
   #test user_create_session method
   test 'create_user_session' do
     user=User.new
-    assert user.create_user_session,'create_user_session method required'
+    assert user.create_user_session(email,password),'create_user_session method required'
   end
 
   test 'destroy_user_session' do
     user=User.new
-    assert user.destroy_user_session,'destroy_user_session method required'
+    assert user.destroy_user_session(token),'destroy_user_session method required'
   end
-  
+
+  test 'create_new_user' do
+    user=User.new
+    assert user.create_new_user(form_params), 'create user model required'
+  end
+
 
 end

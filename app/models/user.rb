@@ -26,8 +26,8 @@ class User < ApplicationRecord
    end
   end
 
- def create_new_user(name,email,password,password_confirmation)
-   
+ def create_new_user(form_params)
+
  end
 
 end
