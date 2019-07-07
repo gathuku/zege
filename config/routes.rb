@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   post 'transaction/topup', to: 'transaction#topup'
   post 'transaction/tranfer', to: 'transaction#transfer'
   get 'account/balance', to: 'transaction#balance'
+  get 'account/notification', to: 'transaction#notification'
 
 end

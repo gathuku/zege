@@ -1,5 +1,5 @@
 class TransactionController < ApplicationController
- before_action :token_guard, only:[:topup,:transfer,:balance]
+ before_action :token_guard, only:[:topup,:transfer,:balance,:notification]
 
  def topup
    trans=Transaction.new
@@ -23,7 +23,11 @@ class TransactionController < ApplicationController
  end
 
  def balance
+ render json:{status:'success',code:200, balance:@user.wallet}
+ end
 
+ def notification
+    render json:Transaction.where(made_to: @user.email, trans_type: "credit")
  end
 
   private
