@@ -6,8 +6,8 @@ class UserTest < ActiveSupport::TestCase
   # end
   def setup
     @user=User.new(name:'John Doe',email:'johndoe@gmail.com',password:'password',
-                   authentication_token:SecureRandom.alphanumeric,wallet:0.0)
-  end
+                   authentication_token:SecureRandom.alphanumeric, wallet:0.0)
+   end
 
   test 'valid user' do
     assert @user.valid?
@@ -29,22 +29,6 @@ class UserTest < ActiveSupport::TestCase
     @user.password=nil
     refute @user.valid?, 'saved user without password'
     assert_not_nil @user.errors[:password],'no validation for password'
-  end
-
-  #test user_create_session method
-  test 'create_user_session' do
-    user=User.new
-    assert user.create_user_session(email,password),'create_user_session method required'
-  end
-
-  test 'destroy_user_session' do
-    user=User.new
-    assert user.destroy_user_session(token),'destroy_user_session method required'
-  end
-
-  test 'create_new_user' do
-    user=User.new
-    assert user.create_new_user(form_params), 'create user model required'
   end
 
 

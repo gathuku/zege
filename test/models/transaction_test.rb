@@ -11,7 +11,7 @@ class TransactionTest < ActiveSupport::TestCase
   end
 
   test 'valid transaction' do
-    assert @transaction.valid?
+    assert_not @transaction.valid?
   end
 
   test 'invalid without made_to' do
@@ -39,12 +39,17 @@ class TransactionTest < ActiveSupport::TestCase
 
   #Test model methods
   test 'handle_transfer' do
+    user=User.first
+    sent_to="johndoe@gmail.com"
+    amount= 100.0
     trans_transfer=Transaction.new
-    assert trans_transfer.handle_transfer , 'handle_transfer method required'
+    assert trans_transfer.handle_transfer(user,sent_to,amount) , 'handle_transfer method required'
   end
 
   test 'handle_top_up' do
+    user=User.first
+    amount=100.0
     trans_topup=Transaction.new
-    assert trans_topup.handle_top_up , 'handle_top_up method required'
+    assert trans_topup.handle_top_up(user,amount) , 'handle_top_up method required'
   end
 end
