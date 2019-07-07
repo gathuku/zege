@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   post 'user/register', to:'user#register'
   post 'user/login', to: 'session#login'
   delete 'user/logout', to: 'session#logout'
+  post 'transaction/topup', to: 'transaction#topup'
+  post 'transaction/tranfer', to: 'transaction#transfer'
+  get 'account/balance', to: 'transaction#balance'
 
 end

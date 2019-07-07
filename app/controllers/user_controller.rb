@@ -6,8 +6,8 @@ class UserController < ApplicationController
       email: params[:email],
       password: params[:password],
     })
-    @user.save
     @user.authentication_token=SecureRandom.alphanumeric
+    @user.save!
     if @user
       render json:{status:'success',code:200,email:@user.email,token:@user.authentication_token}
     else

@@ -5,7 +5,7 @@ class SessionController < ApplicationController
           #assign authentication_token
           @user.authentication_token=SecureRandom.alphanumeric
            #save overwrite token
-           @user.save
+           @user.save!
           render json:{status:'success',code:200,message:'Logged In',token:@user.authentication_token}
       else
         render json:{status:'error',code:404, message: 'Email or password not correct'}
