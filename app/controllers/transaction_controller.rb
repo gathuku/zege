@@ -18,6 +18,7 @@ class TransactionController < ApplicationController
        return render json:{status:'error',message:'Insufficient Funds'}
      end
    else
+     #raise ActiveRecord::RecordNotFound
      render json:{status:'error',message:'user does not exist'}
    end
  end
