@@ -8,7 +8,17 @@ class TransactionControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should have transfer' do
-    post '/transaction/tranfer', params: {amount:@transaction,made_to:@transaction.made_to}
+    post '/transaction/tranfer', params: {amount:@transaction.amount,made_to:@transaction.made_to}
       assert_response :success
   end
+
+  # test 'should perform a transaction' do
+  #   assert_difference(Transaction.count.to_s,+1) do
+  #     post '/transaction/tranfer', params: {amount:@transaction.amount, made_to:@transaction.made_to}
+  #   end
+  # end
+
+  # test 'should have token gurd' do
+  #   refute TransactionController.new.token_guard,'private method call'
+  # end
 end
