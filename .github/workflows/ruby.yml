@@ -20,6 +20,8 @@ jobs:
         bundle install --jobs 4 --retry 3
         bundle exec rake
   deploy:
+    runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v1
     - name: Deploy on Heroku
