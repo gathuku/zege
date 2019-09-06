@@ -19,3 +19,9 @@ jobs:
         sudo apt-get install libsqlite3-dev
         bundle install --jobs 4 --retry 3
         bundle exec rake
+  deploy:
+    steps:
+    - uses: actions/checkout@v1
+    - name: Deploy on Heroku
+      run: |
+        echo "Ready to deploy"
