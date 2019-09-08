@@ -33,9 +33,9 @@ jobs:
       with:
         ruby-version: 2.6.x
     - name: Install Bundler
-      run: gem install bundler
-    - name: Install sqlite3-lib
-      run: sudo apt-get install libsqlite3-dev
+      run: gem update bundler
+    #- name: Install sqlite3-lib
+      #run: sudo apt-get install libsqlite3-dev
     - name: Install dependancies 
       run: bundle install --jobs 4 --retry 3
     - name: Run test with Rake 
