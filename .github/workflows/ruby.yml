@@ -51,7 +51,7 @@ jobs:
       with:
         ruby-version: 2.6.x
     - name: Install Bundler
-      run: gem install bundler
+      run: gem install bundler -v 1.17.3
     
     - name: Install dependancies 
       run: bundle install --jobs 4 --retry 3
