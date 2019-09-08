@@ -3,7 +3,7 @@ name: Ruby
 on: [push, pull_request]
 
 jobs:
-  build:
+  ubuntu:
 
     runs-on: ubuntu-latest
 
@@ -13,17 +13,38 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
-    - name: Build and test with Rake
+    - name: Build and test with Rake on Ubuntu
       run: |
         gem install bundler
         sudo apt-get install libsqlite3-dev
         bundle install --jobs 4 --retry 3
         bundle exec rake
-  deploy:
-    runs-on: ubuntu-latest
+  macOS:
+    runs-on: macOS-latest
     
-    steps:
     - uses: actions/checkout@v1
-    - name: Deploy on Heroku
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+    - name: Build and test with Rake on Mac OS
       run: |
-        echo "Ready to deploy"
+        gem install bundler
+        sudo apt-get install libsqlite3-dev
+        bundle install --jobs 4 --retry 3
+        bundle exec rake
+
+   windows:
+    runs-on: windows-latest
+    
+    - uses: actions/checkout@v1
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+    - name: Build and test with Rake on windows
+      run: |
+        gem install bundler
+        sudo apt-get install libsqlite3-dev
+        bundle install --jobs 4 --retry 3
+        bundle exec rake
